@@ -108,17 +108,16 @@ st.divider()
 # ---------------------------------
 st.subheader("Text and Sentiment Preview")
 
-sentiment_filter = st.selectbox(
-    "Filter by sentiment",
-    ["All", "Positive", "Neutral", "Negative"]
+num_rows = st.slider(
+    "Number of text samples to display",
+    min_value=5,
+    max_value=len(df),
+    value=15
 )
 
-if sentiment_filter == "All":
-    preview_df = df
-else:
-    preview_df = df[df["sentiment"] == sentiment_filter]
+preview_df = df[["text", "sentiment"]].head(num_rows)
+st.dataframe(preview_df, hide_index=True)
 
-st.dataframe(preview_df[["text", "sentiment"]], hide_index=True)
 
 
 
