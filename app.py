@@ -107,4 +107,10 @@ st.divider()
 # Data Preview
 # ---------------------------------
 st.subheader("Text and Sentiment Preview")
-st.dataframe(df[["text", "sentiment"]].head(10))
+
+preview_df = df[["text", "sentiment"]].head(10).copy()
+preview_df.index = range(1, len(preview_df) + 1)
+
+st.dataframe(preview_df)
+
+
