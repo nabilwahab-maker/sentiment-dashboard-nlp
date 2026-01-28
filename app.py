@@ -108,10 +108,18 @@ st.divider()
 # ---------------------------------
 st.subheader("Text and Sentiment Preview")
 
-preview_df = df[["no", "text", "sentiment"]].head(10).copy()
-preview_df.index = range(1, len(preview_df) + 1)
+sentiment_filter = st.selectbox(
+    "Filter by sentiment",
+    ["All", "Positive", "Neutral", "Negative"]
+)
 
-st.dataframe(preview_df)
+if sentiment_filter == "All":
+    preview_df = df
+else:
+    preview_df = df[df["sentiment"] == sentiment_filter]
+
+st.dataframe(preview_df[["text", "sentiment"]], hide_index=True)
+
 
 
 
