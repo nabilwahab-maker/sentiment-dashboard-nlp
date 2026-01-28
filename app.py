@@ -107,16 +107,7 @@ st.divider()
 # Data Preview
 # ---------------------------------
 st.subheader("Text and Sentiment Preview")
-
-num_rows = st.slider(
-    "Number of text samples to display",
-    min_value=5,
-    max_value=len(df),
-    value=15
-)
-
-preview_df = df[["text", "sentiment"]].head(num_rows)
-st.dataframe(preview_df, hide_index=True)
+st.dataframe(df[["text", "sentiment"]], hide_index=True)
 
 
 
